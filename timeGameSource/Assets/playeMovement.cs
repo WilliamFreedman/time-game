@@ -6,21 +6,28 @@ public class playeMovement : MonoBehaviour
 
     public CharacterController2D controller; 
 
-    public float runSpeed = 10f;
+    public float runSpeed = .5f;//controls acceleration
 
-    float horizontalMove = 0f;
+    public float decelSpeed = -1 * 10f; //negative runspeed, makes code easier below because you just plug in move
+
+    float horizontalAcceleration = 0f;
+
+    float horizontalDeceleration = 0f;
 
     bool jump = false;
 
     bool crouch = false;
     
     public timeStop getFrozen;
+
+    public float maxSpeed = 1f;
  
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalAcceleration = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalDeceleration = Input.GetAxisRaw("Horizontal") * decelSpeed;
         if (Input.GetButtonDown("Jump") && (!getFrozen.frozen))
         {
             jump = true;
@@ -38,7 +45,30 @@ public class playeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
+
+        
+
+        if (controller.m_Rigidbody2D.velocity.y == 0)//if stationary,move
+        {
+            controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);
+            jump = false;
+        }
+
+        else if (Mathf.Sign(horizontalAcceleration) == Mathf.Sign(controller.m_Rigidbody2D.velocity.x))//if moving in direction of input
+        {
+
+            if (controller.m_Rigidbody2D.velocity.x < maxSpeed)//if player is moving below max speed
+            {
+                controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);
+                jump = false;
+            }
+            
+        }
+        else if (Mathf.Sign(horizontalAcceleration) != Mathf.Sign(controller.m_Rigidbody2D.velocity.x)) // if not moving in direction of input
+        {
+            controller.Move(horizontalDeceleration * Time.fixedDeltaTime, crouch, jump);
+            jump = false;
+        }
+
     }
 }
