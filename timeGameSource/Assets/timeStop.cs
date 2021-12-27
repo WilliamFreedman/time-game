@@ -5,7 +5,7 @@ public class timeStop : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    bool frozen = false;
+    public bool frozen = false;
 
     public int gravValue = 3; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
 
