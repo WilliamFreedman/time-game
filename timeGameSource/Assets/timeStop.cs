@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+// Shot not fixing the gravity jump bug - Will
 public class timeStop : MonoBehaviour
 {
     public Rigidbody2D rb;
