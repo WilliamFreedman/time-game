@@ -7,7 +7,7 @@ public class playeMovement : MonoBehaviour
 
     public CharacterController2D controller; 
 
-    public float runSpeed = 40f;
+    public float runSpeed = 10f;
 
     float horizontalMove = 0f;
 
@@ -15,6 +15,7 @@ public class playeMovement : MonoBehaviour
 
     bool crouch = false;
 
+ 
 
     // Update is called once per frame
     void Update()
