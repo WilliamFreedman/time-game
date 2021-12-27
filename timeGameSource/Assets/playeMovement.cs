@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class playeMovement : MonoBehaviour
@@ -27,11 +26,11 @@ public class playeMovement : MonoBehaviour
             jump = true;
         }
 
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetButtonDown("Crouch") && (!getFrozen.frozen))
         {
             crouch = true;
         }
-        else if (Input.GetButtonUp("Crouch"))
+        else if (Input.GetButtonUp("Crouch") && (!getFrozen.frozen))
         {
             crouch = false;
         }
