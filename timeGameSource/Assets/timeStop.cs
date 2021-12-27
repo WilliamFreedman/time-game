@@ -7,7 +7,7 @@ public class timeStop : MonoBehaviour
 
     public bool frozen = false;
 
-    public int gravValue = 3; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
+    public int gravValue = 1; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
 
     Vector3 currentVelocity = new Vector3(0,0,0);
     // Update is called once per frame
