@@ -3,34 +3,34 @@ using UnityEngine;
 // Shot not fixing the gravity jump bug - Will
 public class timeStop : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D rb; //reference to player's rigidbody
 
-    public bool frozen = false;
+    public bool frozen = false; //if the player is frozen
 
     public int gravValue = 1; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
 
-    Vector3 currentVelocity = new Vector3(0,0,0);
-    // Update is called once per frame
+    Vector3 currentVelocity = new Vector3(0,0,0); // stores player's velocity, gets updated whenever the player wants to stop time. initialized as {0,0,0} because c# does weird things with non static fields
+
 
     void Start()
     {
-        rb.gravityScale = gravValue;
+        rb.gravityScale = gravValue; // sets player's gravity value at the start of the game, should this be changed to active if were instantiating prefabs?
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("space") && frozen)
-        {
-            rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse);
-            rb.gravityScale = gravValue;
+        if (Input.GetKeyDown("space") && frozen) // when freeze button is pressed, checks if the character is already frozen
+        { //if the character is already in the frozen position
+            rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse); //adds an impulse to put the player back on the path they were on
+            rb.gravityScale = gravValue;//resets gravity
             frozen = false;
         }
 
-        else if (Input.GetKeyDown("space") && !frozen)
+        else if (Input.GetKeyDown("space") && !frozen) //if not already frozen
         {
-            currentVelocity = rb.velocity;
-            rb.velocity = new Vector3(0,0,0); 
-            rb.gravityScale = 0;
+            currentVelocity = rb.velocity; //saves velocity in currentVelocity
+            rb.velocity = new Vector3(0,0,0); //freezes player
+            rb.gravityScale = 0;//turns off gravity
             frozen = true;
         }
 
