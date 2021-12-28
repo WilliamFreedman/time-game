@@ -21,20 +21,27 @@ public class timeStop : MonoBehaviour
     {
         if (Input.GetKeyDown("space") && frozen) // when freeze button is pressed, checks if the character is already frozen
         { //if the character is already in the frozen position
-            rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse); //adds an impulse to put the player back on the path they were on
-            rb.gravityScale = gravValue;//resets gravity
-            frozen = false;
+            UnFreeze();
         }
 
         else if (Input.GetKeyDown("space") && !frozen) //if not already frozen
         {
-            currentVelocity = rb.velocity; //saves velocity in currentVelocity
-            rb.velocity = new Vector3(0,0,0); //freezes player
-            rb.gravityScale = 0;//turns off gravity
-            frozen = true;
+            Freeze();
         }
 
         
+    }
+    public void Freeze() { //Freezes the player
+        currentVelocity = rb.velocity; //saves velocity in currentVelocity
+            rb.velocity = new Vector3(0,0,0); //freezes player
+            rb.gravityScale = 0;//turns off gravity
+            frozen = true;
+    }
+
+    public void UnFreeze() { //Unfreezes the player
+        rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse); //adds an impulse to put the player back on the path they were on
+            rb.gravityScale = gravValue;//resets gravity
+            frozen = false;
     }
 
 }
