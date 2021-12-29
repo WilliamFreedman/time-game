@@ -48,7 +48,6 @@ public class CharacterController2D : MonoBehaviour
  
 	private void FixedUpdate()
 	{
-		Debug.Log(m_Rigidbody2D.velocity);
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
