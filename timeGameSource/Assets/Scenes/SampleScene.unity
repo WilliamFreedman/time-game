@@ -603,7 +603,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 1
-  m_GravityScale: 3
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -700,6 +700,7 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 382004671}
   m_CrouchDisableCollider: {fileID: 1248327890}
   maxSpeed: 20
+  m_Grounded: 0
   m_Rigidbody2D: {fileID: 1248327891}
   OnLandEvent:
     m_PersistentCalls:
@@ -756,7 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1248327891}
   frozen: 0
-  gravValue: 5
+  gravValue: 6
 --- !u!114 &1248327898
 MonoBehaviour:
   m_ObjectHideFlags: 0
