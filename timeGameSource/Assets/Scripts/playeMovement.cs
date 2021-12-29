@@ -1,8 +1,12 @@
 //for any GetButtonDown questions go to Edit/ProjectSettings/InputManager, it lays out the buttons for all the inputs in this file
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class playeMovement : MonoBehaviour
 {
+
+    List<string> inputs = new List<string>();
 
     public CharacterController2D controller; 
 
@@ -25,16 +29,52 @@ public class playeMovement : MonoBehaviour
     public timeStop getFrozen;//reference to timeStop script, checks to see if player is frozen. Use this to get freeze resource when we impliment that
 
     public float maxSpeed = 1f;//max speed
+
+    void fillInputs()
+    {
+        for (int i = 0; i<inputs.Count; i++)
+        {
+            inputs[i] = "";
+        }
+    }
+
+    void Start()
+    {
+        inputs.Add("");
+        inputs.Add("");
+        inputs.Add("");
+        inputs.Add("");
+        inputs.Add("");
+        inputs.Add("");
+    }
  
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetButtonDown("Jump")&& !controller.m_Grounded)
+        {
+            inputs.Add("AirJump");
+            inputs.RemoveAt(0); //I know AirJump is being added, but for some reason the buffer isn't working
+        }
+        else
+        {
+            inputs.Add("");
+            inputs.RemoveAt(0);
+        }
+        
         horizontalAcceleration = Input.GetAxisRaw("Horizontal") * runSpeed; //checks to see if right or left input then assigns horizontal acceleration with that sign
         horizontalDeceleration = Input.GetAxisRaw("Horizontal") * decelSpeed; //same with deceleration
-        if (Input.GetButtonDown("Jump") && (!getFrozen.frozen)) //pulls from getFrozen to see if player is frozen
+        if (((Input.GetButtonDown("Jump") && controller.m_Grounded) || (controller.m_Grounded && inputs.Contains("AirJump"))) && (!getFrozen.frozen) ) //pretty sure this is the problem
         {
+            if (inputs.Contains("AirJump"))
+            {
+                Debug.Log("buffered");
+            }
             jump = true; //sets jump to true if player is trying to jump. jump is passed as a parameter in move
+
+            fillInputs();
         }
 
         if (Input.GetButtonDown("Crouch") && (!getFrozen.frozen))

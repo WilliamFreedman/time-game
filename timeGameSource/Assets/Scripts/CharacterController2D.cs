@@ -136,7 +136,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump)
+		if (jump) //removed grounded check, jump will only be set to true on playermovement if grounded or buffered
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
