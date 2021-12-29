@@ -52,19 +52,19 @@ public class playeMovement : MonoBehaviour
         if(!getFrozen.frozen) { //Only move if we aren't frozen
             controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);//player is allowed to accelerate normally
             jump = false;
-            if(horizontalAcceleration == 0 && controller.m_Grounded) {
-                if(rb.velocity.x < 0) {
-                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration)
+            if(horizontalAcceleration == 0 && controller.m_Grounded) { //If we're grounded and not moving, decelerate (friction)
+                if(rb.velocity.x < 0) { //If going to the left
+                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration) //If we are moving slower than the friction deceleration, decrease by an amount equal to friction deceleration (ensures we don't go negative)
                         rb.velocity += new Vector2(rb.velocity.x, 0);
                     else {
-                        rb.velocity += new Vector2(frictionDeceleration, 0);
+                        rb.velocity += new Vector2(frictionDeceleration, 0); //If not moving slower than friction deceleration, decrease by friction deceleration
                     }
                 }
-                else if(rb.velocity.x > 0) {
-                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration)
+                else if(rb.velocity.x > 0) { //If we're moving to the right
+                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration) //If we are moving slower than the friction deceleration, decrease by an amount equal to friction deceleration (ensures we don't go negative)
                         rb.velocity -= new Vector2(rb.velocity.x, 0);
                     else {
-                        rb.velocity -= new Vector2(frictionDeceleration, 0);
+                        rb.velocity -= new Vector2(frictionDeceleration, 0); //If not moving slower than friction deceleration, decrease by friction deceleration
                     }
                 }
             }

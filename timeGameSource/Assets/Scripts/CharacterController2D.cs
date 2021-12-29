@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
-	public float maxSpeed;
+	public float maxSpeed; //Sets the max speed
 
 
 
@@ -116,6 +116,8 @@ public class CharacterController2D : MonoBehaviour
 			// And then smoothing it out and applying it to the character
 			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 			
+
+			//Only move if we're going less than the max speed OR we're decelerating (don't want to move if we're at the max speed and accelerating)
 			if (Mathf.Abs(m_Rigidbody2D.velocity.x) < maxSpeed || Mathf.Sign(targetVelocity.x) != Mathf.Sign(m_Rigidbody2D.velocity.x))
             {
                 m_Rigidbody2D.velocity += new Vector2(targetVelocity.x, 0); //adds velocity to the player when move is called, doesn't deal with max speed stuff
