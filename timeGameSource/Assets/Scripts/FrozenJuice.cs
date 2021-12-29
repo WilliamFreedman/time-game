@@ -5,12 +5,17 @@ public class FrozenJuice : MonoBehaviour
 {
     // Start is called before the first frame update
     public FrozenTimer freezeTime;
-    public Text scoreText;
+    public Image juiceBar;
+    void Setup() {
+        juiceBar.fillCenter = true;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = freezeTime.frozenTimer.ToString();
+        Debug.Log("fillAmount " + juiceBar.fillAmount);
+        juiceBar.fillAmount = freezeTime.frozenTimer/freezeTime.frozenMax;
     }
 
 }

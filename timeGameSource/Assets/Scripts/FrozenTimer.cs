@@ -4,6 +4,7 @@ public class FrozenTimer : MonoBehaviour
 {
     // Start is called before the first frame update
     
+    public float frozenMax = 5f;
     public float frozenTimer = 5f;
 
     public float rechargeRate = .5f;
