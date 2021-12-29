@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 1000f;							// Amount of force added when the player jumps.
+	private float m_JumpForce = 1500;							// Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
@@ -11,11 +11,12 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
+	public float maxSpeed;
 
 
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	public Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -47,6 +48,7 @@ public class CharacterController2D : MonoBehaviour
  
 	private void FixedUpdate()
 	{
+		Debug.Log(m_Rigidbody2D.velocity);
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -113,8 +115,11 @@ public class CharacterController2D : MonoBehaviour
 			Vector3 targetVelocity = new Vector2(move, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
-			m_Rigidbody2D.velocity += new Vector2(targetVelocity.x, 0); //adds velocity to the player when move is called, doesn't deal with max speed stuff
+			
+			if (Mathf.Abs(m_Rigidbody2D.velocity.x) < maxSpeed || Mathf.Sign(targetVelocity.x) != Mathf.Sign(m_Rigidbody2D.velocity.x))
+            {
+                m_Rigidbody2D.velocity += new Vector2(targetVelocity.x, 0); //adds velocity to the player when move is called, doesn't deal with max speed stuff
+            }
 			
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)

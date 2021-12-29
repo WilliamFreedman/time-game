@@ -6,13 +6,17 @@ public class playeMovement : MonoBehaviour
 
     public CharacterController2D controller; 
 
-    public float runSpeed = .5f;//controls acceleration
+    public float runSpeed = 1f;//controls acceleration
 
-    public float decelSpeed = -1 * 10f; //negative runspeed, makes code easier below because you just plug in move
+    public float decelSpeed = -2 * 10f; //negative runspeed, makes code easier below because you just plug in move
 
     float horizontalAcceleration = 0f;//keep initialized at 0, gets edited every frame with the input value detected
 
     float horizontalDeceleration = 0f;//same as above
+
+    public float frictionDeceleration = .5f;
+
+    public Rigidbody2D rb;
 
     bool jump = false; 
 
@@ -45,29 +49,25 @@ public class playeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        if (controller.m_Rigidbody2D.velocity.y == 0)//if stationary, player is allowed to move
-        {
-            controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);
+        if(!getFrozen.frozen) { //Only move if we aren't frozen
+            controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);//player is allowed to accelerate normally
             jump = false;
-        }
-
-        else if (Mathf.Sign(horizontalAcceleration) == Mathf.Sign(controller.m_Rigidbody2D.velocity.x))//if player is moving in direction of input
-        {
-
-            if (controller.m_Rigidbody2D.velocity.x < maxSpeed)//if player is moving below max speed
-            {
-                controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);//player is allowed to accelerate normally
-                jump = false;
+            if(horizontalAcceleration == 0 && controller.m_Grounded) {
+                if(rb.velocity.x < 0) {
+                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration)
+                        rb.velocity += new Vector2(rb.velocity.x, 0);
+                    else {
+                        rb.velocity += new Vector2(frictionDeceleration, 0);
+                    }
+                }
+                else if(rb.velocity.x > 0) {
+                    if(Mathf.Abs(rb.velocity.x) < frictionDeceleration)
+                        rb.velocity -= new Vector2(rb.velocity.x, 0);
+                    else {
+                        rb.velocity -= new Vector2(frictionDeceleration, 0);
+                    }
+                }
             }
-            //if player is moving in direction of input and is at or above max speed, nothing should happen
-            
         }
-        else if (Mathf.Sign(horizontalAcceleration) != Mathf.Sign(controller.m_Rigidbody2D.velocity.x)) // if not moving in direction of input
-        {
-            controller.Move(horizontalDeceleration * Time.fixedDeltaTime, crouch, jump); //decelerates according to horizontalDeceleration
-            jump = false;
-        }
-
     }
 }

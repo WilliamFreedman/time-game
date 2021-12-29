@@ -602,7 +602,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -690,7 +690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71217bb24dfb043dfa7deef5b2a45bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
   m_CrouchSpeed: 0.4
   m_MovementSmoothing: 0.05
   m_AirControl: 0
@@ -700,7 +699,8 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1031396075}
   m_CeilingCheck: {fileID: 382004671}
   m_CrouchDisableCollider: {fileID: 1248327890}
-  m_Rigidbody2D: {fileID: 0}
+  maxSpeed: 20
+  m_Rigidbody2D: {fileID: 1248327891}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -738,6 +738,8 @@ MonoBehaviour:
   controller: {fileID: 1248327894}
   runSpeed: 40
   decelSpeed: -10
+  frictionDeceleration: 0.5
+  rb: {fileID: 1248327891}
   getFrozen: {fileID: 1248327897}
   maxSpeed: 1
 --- !u!114 &1248327897
@@ -754,7 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1248327891}
   frozen: 0
-  gravValue: 3
+  gravValue: 5
 --- !u!114 &1248327898
 MonoBehaviour:
   m_ObjectHideFlags: 0
