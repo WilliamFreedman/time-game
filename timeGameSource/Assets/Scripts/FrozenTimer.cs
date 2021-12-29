@@ -3,6 +3,8 @@ using UnityEngine;
 public class FrozenTimer : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    
     
     public float frozenMax = 5f; //Max amount of frozen juice
     public float frozenTimer = 5f; //Amount of frozen juice left
@@ -10,6 +12,11 @@ public class FrozenTimer : MonoBehaviour
     public float rechargeRate = .5f; //How fast frozen juice recharges when not frozen (per second)
     public float drainRate = 1f; //How fast frozen juice depletes when frozen (per second)
     public timeStop getFrozen;
+
+    public void fill() 
+    {
+        frozenTimer = frozenMax;//sets current juice value to max
+    }
 
     // Update is called once per frame
     void Update()
