@@ -14,7 +14,6 @@ public class FrozenJuice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("fillAmount " + juiceBar.fillAmount);
         juiceBar.fillAmount = freezeTime.frozenTimer/freezeTime.frozenMax;
     }
 
