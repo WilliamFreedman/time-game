@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class juiceRefil : MonoBehaviour
 {
-
     public FrozenTimer timerControls;
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -12,7 +11,13 @@ public class juiceRefil : MonoBehaviour
 
         if (other.gameObject.tag == "player")
         { 
-            timerControls.fill();//calls fill to set frozen juice meter to max
+            if (timerControls.frozenTimeLeft != timerControls.frozenMax)
+            {
+                timerControls.fill();//calls fill to set frozen juice meter to max
+                this.gameObject.SetActive(false);
+            }
+            
+ 
         }
     }
    // Update is called once per frame

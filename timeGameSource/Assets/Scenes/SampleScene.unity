@@ -785,7 +785,7 @@ Transform:
   m_GameObject: {fileID: 1248327888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.9, y: 2.33, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.33, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 382004671}
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frozenMax: 5
-  frozenTimer: 5
+  frozenTimeLeft: 5
   rechargeRate: 0.5
   drainRate: 1
   getFrozen: {fileID: 1248327897}
