@@ -50,7 +50,6 @@ public class playeMovement : MonoBehaviour
         {
             jump = true; //sets jump to true if player is trying to jump. jump is passed as a parameter in move
 
-            fillInputs();
         }
 
         if (Input.GetButtonDown("Crouch") && (!getFrozen.frozen))
