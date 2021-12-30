@@ -119,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
 			//Only move if we're going less than the max speed OR we're decelerating (don't want to move if we're at the max speed and accelerating)
 			if (Mathf.Abs(m_Rigidbody2D.velocity.x) < maxSpeed || Mathf.Sign(targetVelocity.x) != Mathf.Sign(m_Rigidbody2D.velocity.x))
             {
-                m_Rigidbody2D.velocity += new Vector2(targetVelocity.x, 0); //adds velocity to the player when move is called, doesn't deal with max speed stuff
+                m_Rigidbody2D.velocity += new Vector2(targetVelocity.x* Time.deltaTime, 0); //adds velocity to the player when move is called, doesn't deal with max speed stuff
             }
 			
 			// If the input is moving the player right and the player is facing left...

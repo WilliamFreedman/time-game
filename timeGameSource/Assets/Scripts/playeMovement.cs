@@ -8,7 +8,7 @@ public class playeMovement : MonoBehaviour
 
     public CharacterController2D controller; 
 
-    public float runSpeed = 1f;//controls acceleration
+    public float runSpeed = 10f;//controls acceleration
 
     public float decelSpeed = -2 * 10f; //negative runspeed, makes code easier below because you just plug in move
 
@@ -30,7 +30,7 @@ public class playeMovement : MonoBehaviour
 
     float? timeOfInput;
 
-    float bufferLength = .2f;
+    float bufferLength = .1f;
 
 
 
@@ -64,6 +64,7 @@ public class playeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(Time.deltaTime);
         if(!getFrozen.frozen) { //Only move if we aren't frozen
             controller.Move(horizontalAcceleration * Time.fixedDeltaTime, crouch, jump);//player is allowed to accelerate normally
             jump = false;
@@ -77,9 +78,9 @@ public class playeMovement : MonoBehaviour
                 }
                 else if(rb.velocity.x > 0) { //If we're moving to the right
                     if(Mathf.Abs(rb.velocity.x) < frictionDeceleration) //If we are moving slower than the friction deceleration, decrease by an amount equal to friction deceleration (ensures we don't go negative)
-                        rb.velocity -= new Vector2(rb.velocity.x, 0);
+                        rb.velocity -= new Vector2(rb.velocity.x*Time.deltaTime, 0);
                     else {
-                        rb.velocity -= new Vector2(frictionDeceleration, 0); //If not moving slower than friction deceleration, decrease by friction deceleration
+                        rb.velocity -= new Vector2(frictionDeceleration*Time.deltaTime, 0); //If not moving slower than friction deceleration, decrease by friction deceleration
                     }
                 }
             }
