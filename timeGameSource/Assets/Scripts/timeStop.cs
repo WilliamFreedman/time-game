@@ -28,6 +28,7 @@ public class timeStop : MonoBehaviour
         {
             Freeze();
         }
+        Debug.Log("Gravity value: " + gravValue);
 
         
     }
