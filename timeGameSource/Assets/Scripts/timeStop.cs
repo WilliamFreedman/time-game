@@ -7,14 +7,14 @@ public class timeStop : MonoBehaviour
 
     public bool frozen = false; //if the player is frozen
 
-    public int gravValue = 1; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
+    private float gravValue; // this is where we should edit gravity scale for the player, makes the scripting a lot easier
 
     Vector3 currentVelocity = new Vector3(0,0,0); // stores player's velocity, gets updated whenever the player wants to stop time. initialized as {0,0,0} because c# does weird things with non static fields
 
 
     void Start()
     {
-        rb.gravityScale = gravValue; // sets player's gravity value at the start of the game, should this be changed to active if were instantiating prefabs?
+        gravValue = rb.gravityScale; // sets player's gravity value at the start of the game, should this be changed to active if were instantiating prefabs?
     }
 
     void Update()
