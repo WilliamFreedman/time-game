@@ -6,17 +6,17 @@ using UnityEngine;
 public class followPlayer : MonoBehaviour
 {
     public Transform player;
-    public float dampTime = 0.2f;
+    public float smoothSpeed = .2f;
     private Vector3 cameraPos;
-    private Vector3 velocity = Vector3.zero;
+    public Vector3 offset;
 
 
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        cameraPos = new Vector3(player.position.x,player.position.y,-10f);
-        transform.position = Vector3.SmoothDamp(gameObject.transform.position, cameraPos, ref velocity, dampTime);
+        Vector3 desiredPosition = player.position + offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
     }
 }

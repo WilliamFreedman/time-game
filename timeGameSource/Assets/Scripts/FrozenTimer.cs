@@ -21,18 +21,25 @@ public class FrozenTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(getFrozen.frozen) { //If frozen, deplete juice by drainRate
-            frozenTimeLeft -= drainRate * Time.deltaTime;
-            if(frozenTimeLeft <= 0) { //If we're out of juice, unfreeze
-                frozenTimeLeft = 0; //Ensures frozenTimeLeft does not become negative
-                getFrozen.UnFreeze();
-            }
+        if(getFrozen.frozen) { //If frozen, deplete juice
+            DrainJuice();
         }
-        else if(frozenTimeLeft < frozenMax) {
-            frozenTimeLeft += rechargeRate * Time.deltaTime;
-            if(frozenTimeLeft > frozenMax) { //Ensures frozenTimeLeft does not go above teh cap
-                frozenTimeLeft = frozenMax;
-            }
+        else if(frozenTimeLeft < frozenMax) { //If not frozen and less than the max, recharge
+            RechargeJuice();
+        }
+    }
+
+    void DrainJuice() {
+        frozenTimeLeft -= drainRate * Time.deltaTime; //Deplete juice by drainRate
+        if(frozenTimeLeft <= 0) { //If we're out of juice, unfreeze
+            frozenTimeLeft = 0; //Ensures frozenTimeLeft does not become negative
+            getFrozen.UnFreeze();
+        }
+    }
+    void RechargeJuice() {
+        frozenTimeLeft += rechargeRate * Time.deltaTime; //Recharge juice by rechargeRate
+        if(frozenTimeLeft > frozenMax) { //Ensures frozenTimeLeft does not go above the cap
+            frozenTimeLeft = frozenMax;
         }
     }
 }
