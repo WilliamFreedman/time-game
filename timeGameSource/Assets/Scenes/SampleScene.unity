@@ -887,7 +887,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1248327891}
   frozen: 0
-  gravValue: 6
 --- !u!114 &1248327898
 MonoBehaviour:
   m_ObjectHideFlags: 0
