@@ -30,7 +30,7 @@ public class playeMovement : MonoBehaviour
 
     float? timeOfInput;
 
-    float bufferLength = .2f;
+    float bufferLength = .15f;
 
 
 
