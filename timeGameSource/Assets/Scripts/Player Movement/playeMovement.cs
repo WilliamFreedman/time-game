@@ -10,7 +10,7 @@ public class playeMovement : MonoBehaviour
 
     public float runSpeed = 1f;//controls acceleration
 
-    public float decelSpeed = -2 * 10f; //negative runspeed, makes code easier below because you just plug in move
+    public float decelSpeed = -2 * 22f; //negative runspeed, makes code easier below because you just plug in move
 
     float horizontalAcceleration;//keep initialized at 0, gets edited every frame with the input value detected
 
