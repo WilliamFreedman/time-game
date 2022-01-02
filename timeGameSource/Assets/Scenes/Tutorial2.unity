@@ -279,8 +279,8 @@ GameObject:
   - component: {fileID: 209940036}
   - component: {fileID: 209940038}
   m_Layer: 0
-  m_Name: pusher
-  m_TagString: Untagged
+  m_Name: movingBox
+  m_TagString: pusher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

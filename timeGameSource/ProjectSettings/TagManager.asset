@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ju
   - player
+  - pusher
   layers:
   - Default
   - TransparentFX
