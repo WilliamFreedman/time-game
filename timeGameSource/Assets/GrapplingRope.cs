@@ -23,7 +23,6 @@ public class GrapplingRope : MonoBehaviour
     float moveTime = 0;
 
     [HideInInspector] public bool isGrappling = true;
-
     bool strightLine = true;
 
     private void OnEnable()
