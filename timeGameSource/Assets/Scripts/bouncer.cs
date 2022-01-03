@@ -17,7 +17,6 @@ public class bouncer : MonoBehaviour
         Vector3 mag = new Vector3(7,0,0);
         Vector3 targetVelocity = self.transform.right * speed;
         self.velocity = new Vector2(targetVelocity.x,targetVelocity.y);
-        Debug.Log(self.is)
     }
 
     // Update is called once per frame
