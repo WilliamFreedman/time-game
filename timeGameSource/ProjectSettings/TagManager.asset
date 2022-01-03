@@ -7,6 +7,7 @@ TagManager:
   - ju
   - player
   - pusher
+  - spring
   layers:
   - Default
   - TransparentFX
