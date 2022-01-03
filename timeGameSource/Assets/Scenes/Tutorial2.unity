@@ -1124,10 +1124,10 @@ MonoBehaviour:
   rotateOverTime: 0
   rotationSpeed: 4
   hasMaxDistance: 1
-  maxDistance: 20
+  maxDistnace: 20
   controller: {fileID: 1970602277}
   launchToPoint: 1
-  launchType: 0
+  launchType: 1
   launchSpeed: 3
   autoConfigureDistance: 0
   targetDistance: 3
@@ -1297,6 +1297,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   ropeProgressionSpeed: 6.7
   isGrappling: 1
+  getFrozen: {fileID: 1970602276}
 --- !u!120 &1933381371
 LineRenderer:
   m_ObjectHideFlags: 0
