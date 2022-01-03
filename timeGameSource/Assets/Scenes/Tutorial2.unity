@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181272706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.91, y: 7.98, z: -1.9687905}
+  m_LocalPosition: {x: 32.47, y: -8.26, z: -1.9687905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,14 +371,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209940033}
-  m_LocalRotation: {x: -0, y: -0.0023670695, z: 0, w: 0.99999726}
-  m_LocalPosition: {x: 13.32, y: 8.24, z: 0.01}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 17.04, y: 6.24, z: 0.01}
   m_LocalScale: {x: 14.204379, y: 3.3301, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: -0.271, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!114 &209940036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +394,7 @@ MonoBehaviour:
   self: {fileID: 209940037}
   leftBound: {fileID: 424559935}
   rightBound: {fileID: 181272707}
+  speed: 7
 --- !u!50 &209940037
 Rigidbody2D:
   serializedVersion: 4
@@ -413,8 +414,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &209940038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -558,7 +559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424559934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.07, y: 7.88, z: -1.9687905}
+  m_LocalPosition: {x: 10.1, y: 13.17, z: -1.9687905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -750,11 +751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 962821748424925130, guid: a0b4fc7adfcb35443a929295b115bf4a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 68.862976
+      value: 31.185295
       objectReference: {fileID: 0}
     - target: {fileID: 962821748424925130, guid: a0b4fc7adfcb35443a929295b115bf4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.8038
+      value: 4.9669
       objectReference: {fileID: 0}
     - target: {fileID: 962821748424925130, guid: a0b4fc7adfcb35443a929295b115bf4a, type: 3}
       propertyPath: m_LocalPosition.y
