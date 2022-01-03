@@ -22,7 +22,6 @@ public class bouncer : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
     {
-        
         self.velocity *= -1;
     }
 
