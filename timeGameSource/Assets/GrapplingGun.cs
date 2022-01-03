@@ -29,6 +29,7 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private bool hasMaxDistance = false;
     [SerializeField] private float maxDistnace = 20;
 
+    private float gravValue;
     private enum LaunchType
     {
         Transform_Launch,
@@ -52,6 +53,7 @@ public class GrapplingGun : MonoBehaviour
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        gravValue = m_rigidbody.gravityScale;
 
     }
 
@@ -87,7 +89,7 @@ public class GrapplingGun : MonoBehaviour
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            m_rigidbody.gravityScale = gravValue;
         }
         else
         {

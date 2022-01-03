@@ -1126,7 +1126,7 @@ MonoBehaviour:
   maxDistnace: 20
   launchToPoint: 1
   launchType: 1
-  launchSpeed: 1
+  launchSpeed: 3
   autoConfigureDistance: 0
   targetDistance: 3
   targetFrequncy: 1
@@ -1461,6 +1461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2531930092708522727, guid: a624747124b511b4f9ed7a81d90ffb36, type: 3}
+      propertyPath: grapple
+      value: 
+      objectReference: {fileID: 1725056244}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a624747124b511b4f9ed7a81d90ffb36, type: 3}
 --- !u!114 &1970602266 stripped
