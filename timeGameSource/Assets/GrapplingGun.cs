@@ -28,9 +28,11 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Distance:")]
     [SerializeField] private bool hasMaxDistance = false;
-    [SerializeField] private float maxDistnace = 20;
+    [SerializeField] private float maxDistance = 20;
 
     public CharacterController2D controller;
+    private Rigidbody2D platform;
+    bool movingPlatform = false;
 
     private float gravValue;
     private enum LaunchType
@@ -62,6 +64,11 @@ public class GrapplingGun : MonoBehaviour
 
     }
 
+    private void FixedUpdate() {
+        if(Input.GetKey(KeyCode.Mouse0) && movingPlatform) {
+            grapplePoint+=.02f*platform.velocity;//multiplied by .02 to go from /sec to /frame
+        }
+    }
     private void Update()
     {
         if(!getFrozen.frozen) {
@@ -146,12 +153,20 @@ public class GrapplingGun : MonoBehaviour
             RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
             if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
             {
-                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
+                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistance || !hasMaxDistance)
                 {
                     grapplePoint = _hit.point;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
                 }
+            }
+            if(_hit.transform.gameObject.tag.Equals("pusher")) {
+                movingPlatform = true;
+                platform = _hit.rigidbody;
+            }
+            else {
+                movingPlatform = false;
+                platform = null;
             }
         }
     }
@@ -201,7 +216,7 @@ public class GrapplingGun : MonoBehaviour
         if (firePoint != null && hasMaxDistance)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(firePoint.position, maxDistnace);
+            Gizmos.DrawWireSphere(firePoint.position, maxDistance);
         }
     }
 
