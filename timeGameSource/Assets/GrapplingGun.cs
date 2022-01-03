@@ -56,6 +56,8 @@ public class GrapplingGun : MonoBehaviour
 
     private bool grappleRight;
 
+    public bool wasFrozen = false;
+
     private void Start()
     {
         grappleRope.enabled = false;
@@ -67,6 +69,7 @@ public class GrapplingGun : MonoBehaviour
     private void FixedUpdate() {
         if(Input.GetKey(KeyCode.Mouse0) && movingPlatform) {
             grapplePoint+=.02f*platform.velocity;//multiplied by .02 to go from /sec to /frame
+            m_rigidbody.gameObject.transform.position+=new Vector3(.02f*platform.velocity.x, .02f*platform.velocity.y, 0);
         }
     }
     private void Update()
@@ -78,8 +81,9 @@ public class GrapplingGun : MonoBehaviour
                 if(controller.m_FacingRight == !grappleRight) {
                     controller.Flip();
                 }
+                wasFrozen=false;
             }
-            else if (Input.GetKey(KeyCode.Mouse0))
+            else if (Input.GetKey(KeyCode.Mouse0) || wasFrozen)
             {
                 if (grappleRope.enabled)
                 {
@@ -97,6 +101,7 @@ public class GrapplingGun : MonoBehaviour
                     {
                         Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
                         Vector2 targetPos = grapplePoint - firePointDistnace;
+                        m_rigidbody.gravityScale = 0;
                         gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
                     }
                 }
@@ -112,6 +117,9 @@ public class GrapplingGun : MonoBehaviour
                 Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
                 RotateGun(mousePos, true);
             }
+        }
+        if(!grappleRope.enabled) {
+            wasFrozen = false;
         }
     }
 
