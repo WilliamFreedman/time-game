@@ -13,6 +13,8 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 	public float maxSpeed; //Sets the max speed
 
+	public GrapplingGun grapple;
+
 
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -154,5 +156,6 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+		grapple.transform.position *=-1;
 	}
 }
