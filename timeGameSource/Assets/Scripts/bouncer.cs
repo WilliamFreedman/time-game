@@ -13,7 +13,7 @@ public class bouncer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        self.isKinematic = false;
+    
         Vector3 mag = new Vector3(7,0,0);
         Vector3 targetVelocity = self.transform.right * speed;
         self.velocity = new Vector2(targetVelocity.x,targetVelocity.y);
