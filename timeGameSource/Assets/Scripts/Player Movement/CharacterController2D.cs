@@ -19,12 +19,8 @@ public class CharacterController2D : MonoBehaviour
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
 	public Rigidbody2D m_Rigidbody2D;
-	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-
-	public Sprite left;
-	public Sprite right;
-	public SpriteRenderer spriteRenderer;
 
 
 
@@ -149,15 +145,14 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Flip()
+	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
-		//Flip Mario Around
-		if(m_FacingRight)
-			spriteRenderer.sprite = right;
-		else
-			spriteRenderer.sprite = left;
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 }
