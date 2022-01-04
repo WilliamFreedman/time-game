@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1575662502736143887}
   - component: {fileID: 1575662502736143882}
   - component: {fileID: 1575662502736143877}
-  - component: {fileID: 1575662502736143876}
   - component: {fileID: 1575662502736143879}
   - component: {fileID: 2531930092708522727}
+  - component: {fileID: 754997310764390320}
   m_Layer: 3
   m_Name: Player
   m_TagString: player
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4bf6390ae90534850b0f646dc2dce9fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -173,23 +173,8 @@ MonoBehaviour:
   decelSpeed: -10
   frictionDeceleration: 0.5
   rb: {fileID: 1575662502736143886}
-  getFrozen: {fileID: 1575662502736143876}
+  getFrozen: {fileID: 754997310764390320}
   maxSpeed: 1
---- !u!114 &1575662502736143876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575662502736143885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc032ca63b3be45fb927dbeee3cc6c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1575662502736143886}
-  frozen: 0
-  grapple: {fileID: 0}
 --- !u!114 &1575662502736143879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +191,7 @@ MonoBehaviour:
   frozenTimeLeft: 5
   rechargeRate: 0.5
   drainRate: 1
-  getFrozen: {fileID: 1575662502736143876}
+  getFrozen: {fileID: 754997310764390320}
 --- !u!114 &2531930092708522727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,15 +216,30 @@ MonoBehaviour:
   m_Grounded: 0
   m_Rigidbody2D: {fileID: 1575662502736143886}
   m_FacingRight: 1
-  left: {fileID: 0}
-  right: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  left: {fileID: 21300000, guid: feef8af95ee75e842b7be5338fb177ab, type: 3}
+  right: {fileID: 21300000, guid: 059b2f5b1c6405040b6d88242f76527f, type: 3}
+  spriteRenderer: {fileID: 1575662502736143881}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &754997310764390320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575662502736143885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc032ca63b3be45fb927dbeee3cc6c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1575662502736143886}
+  frozen: 0
+  grapple: {fileID: 0}
 --- !u!1 &1575662503086752823
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class timeStop : MonoBehaviour
 
     Vector3 currentVelocity = new Vector3(0,0,0); // stores player's velocity, gets updated whenever the player wants to stop time. initialized as {0,0,0} because c# does weird things with non static fields
 
-    public GrapplingGun grapple;
+    public GrapplingGun grapple = null;
     void OnCollisionExit2D(Collision2D other) 
     {
         if (other.collider.gameObject.tag == "pusher" && frozen)
@@ -50,7 +50,7 @@ public class timeStop : MonoBehaviour
         rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse); //adds an impulse to put the player back on the path they were on
             rb.gravityScale = gravValue;//resets gravity
             frozen = false;
-            if(!Input.GetKey(KeyCode.Mouse0))
+            if(!Input.GetKey(KeyCode.Mouse0)&&grapple!=null)
                 grapple.wasFrozen = true;
     }
 

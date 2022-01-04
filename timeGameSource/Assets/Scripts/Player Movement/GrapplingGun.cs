@@ -67,9 +67,10 @@ public class GrapplingGun : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(Input.GetKey(KeyCode.Mouse0) && movingPlatform) {
+        if(movingPlatform) {
             grapplePoint+=.02f*platform.velocity;//multiplied by .02 to go from /sec to /frame
-            m_rigidbody.gameObject.transform.position+=new Vector3(.02f*platform.velocity.x, .02f*platform.velocity.y, 0);
+           if(!getFrozen.frozen&&launchToPoint && grappleRope.isGrappling)
+                m_rigidbody.gameObject.transform.position+=new Vector3(.02f*platform.velocity.x, .02f*platform.velocity.y, 0);
         }
     }
     private void Update()
@@ -111,6 +112,7 @@ public class GrapplingGun : MonoBehaviour
                 grappleRope.enabled = false;
                 m_springJoint2D.enabled = false;
                 m_rigidbody.gravityScale = gravValue;
+                movingPlatform = false;
             }
             else
             {
@@ -130,7 +132,7 @@ public class GrapplingGun : MonoBehaviour
 
         float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
         float angleFromPlayer = Mathf.Atan2(distanceVector2.y, distanceVector2.x) * Mathf.Rad2Deg;
-        if(!Input.GetKey(KeyCode.Mouse0)&&!grappleRope.enabled) {
+        if(!Input.GetKey(KeyCode.Mouse0)&&!grappleRope.enabled&&!getFrozen.frozen) {
             if(angleFromPlayer >= -90 && angleFromPlayer <= 90) {
                 //face right
                 gunPivot.transform.localPosition = new Vector3(4.69f, 0, 0);
@@ -147,7 +149,7 @@ public class GrapplingGun : MonoBehaviour
         {
             gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
         }
-        else
+        else if(!getFrozen.frozen)
         {
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
