@@ -1,2 +1,2 @@
 # time-game
-# Created by Embyr, Kareem, Lucas, and William
+# Created by Embyr, Kareem, Lucas, Steven, and William
