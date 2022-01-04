@@ -32,7 +32,14 @@ public class playeMovement : MonoBehaviour
 
     float bufferLength = .15f;
 
-
+    
+    void OnCollisionExit2D(Collision2D other) 
+    {
+        if (other.collider.tag == "pusher")
+        {
+            rb.velocity = new Vector3(0,0,0);
+        }    
+    }
 
     // Update is called once per frame
     void Update()
