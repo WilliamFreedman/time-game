@@ -50,7 +50,8 @@ public class timeStop : MonoBehaviour
         rb.AddForce(currentVelocity*rb.mass,ForceMode2D.Impulse); //adds an impulse to put the player back on the path they were on
             rb.gravityScale = gravValue;//resets gravity
             frozen = false;
-            grapple.wasFrozen = true;
+            if(!Input.GetKey(KeyCode.Mouse0))
+                grapple.wasFrozen = true;
     }
 
 }
