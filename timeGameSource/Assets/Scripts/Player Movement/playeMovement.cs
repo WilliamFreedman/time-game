@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playeMovement : MonoBehaviour
 {
-
+    public GameManager God;
 
     public CharacterController2D controller; 
 
@@ -39,6 +39,14 @@ public class playeMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0,0,0);
         }    
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.tag == "kill")
+        {
+            God.kill();
+        }
     }
 
     // Update is called once per frame

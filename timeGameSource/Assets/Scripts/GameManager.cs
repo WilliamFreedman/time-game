@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
     void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void kill()
+    {
+        Debug.Log("ded as hell");
+    }
 }
