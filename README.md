@@ -10,3 +10,4 @@ releasing grappling hook early to slingshot yourself
 using moving platforms to position into narrow tunnels with freeze/hook
 start player falling onto bounce pad that activates laser
 room of lasers, few safe spots
+Elevator when you attach to a platform above you with the grapple and have to freeze/unfreeze to the timing of lasers that stretch across the elevator's path
