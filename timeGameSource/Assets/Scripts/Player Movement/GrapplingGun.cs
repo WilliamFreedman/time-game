@@ -19,7 +19,6 @@ public class GrapplingGun : MonoBehaviour
     public Transform firePoint;
 
     [Header("Physics Ref:")]
-    public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;
 
     [Header("Rotation:")]
@@ -46,11 +45,6 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
     [SerializeField] private float launchSpeed = 1;
 
-    [Header("No Launch To Point")]
-    [SerializeField] private bool autoConfigureDistance = false;
-    [SerializeField] private float targetDistance = 3;
-    [SerializeField] private float targetFrequncy = 1;
-
     [HideInInspector] public Vector2 grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
 
@@ -58,10 +52,14 @@ public class GrapplingGun : MonoBehaviour
 
     public bool wasFrozen = false;
 
+    private bool mousePressedOrFrozen = false;
+    private Vector2 currentVelocity; //Used in smoothDamp function
+
+    public float grappleTime = .1f;
+
     private void Start()
     {
         grappleRope.enabled = false;
-        m_springJoint2D.enabled = false;
         gravValue = m_rigidbody.gravityScale;
 
     }
@@ -70,7 +68,30 @@ public class GrapplingGun : MonoBehaviour
         if(movingPlatform) {
             grapplePoint+=.02f*platform.velocity;//multiplied by .02 to go from /sec to /frame
            if(!getFrozen.frozen&&launchToPoint && grappleRope.isGrappling)
-                m_rigidbody.gameObject.transform.position+=new Vector3(.02f*platform.velocity.x, .02f*platform.velocity.y, 0);
+                m_rigidbody.gameObject.transform.position+=new Vector3(.02f*platform.velocity.x, .02f*platform.velocity.y, 0); //Move with moving platform
+        }
+        if(mousePressedOrFrozen&&!getFrozen.frozen) {
+            if (grappleRope.enabled)
+            {
+                RotateGun(grapplePoint, false);
+            }
+            else
+            {
+                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+                RotateGun(mousePos, true);
+            }
+
+            if (launchToPoint && grappleRope.isGrappling)
+            {
+                if (launchType == LaunchType.Transform_Launch)
+                {
+                    Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
+                    Vector2 targetPos = grapplePoint - firePointDistnace;
+                    m_rigidbody.gravityScale = 0;
+                    //gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.fixedDeltaTime * launchSpeed);
+                    gunHolder.position = Vector2.SmoothDamp(gunHolder.position, targetPos,  ref currentVelocity, grappleTime, launchSpeed);
+                }
+            }
         }
     }
     private void Update()
@@ -83,41 +104,25 @@ public class GrapplingGun : MonoBehaviour
                     controller.Flip();
                 }
                 wasFrozen=false;
+                mousePressedOrFrozen = false;
             }
             else if (Input.GetKey(KeyCode.Mouse0) || wasFrozen)
             {
-                if (grappleRope.enabled)
-                {
-                    RotateGun(grapplePoint, false);
-                }
-                else
-                {
-                    Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-                    RotateGun(mousePos, true);
-                }
-
-                if (launchToPoint && grappleRope.isGrappling)
-                {
-                    if (launchType == LaunchType.Transform_Launch)
-                    {
-                        Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
-                        Vector2 targetPos = grapplePoint - firePointDistnace;
-                        m_rigidbody.gravityScale = 0;
-                        gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
-                    }
-                }
+                mousePressedOrFrozen = true;
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
+                mousePressedOrFrozen = false;
                 grappleRope.enabled = false;
-                m_springJoint2D.enabled = false;
                 m_rigidbody.gravityScale = gravValue;
                 movingPlatform = false;
+                gunHolder.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
             }
             else
             {
                 Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
                 RotateGun(mousePos, true);
+                mousePressedOrFrozen = false;
             }
         }
         if(!grappleRope.enabled) {
@@ -183,42 +188,9 @@ public class GrapplingGun : MonoBehaviour
 
     public void Grapple()
     {
-        m_springJoint2D.autoConfigureDistance = false;
-        if (!launchToPoint && !autoConfigureDistance)
-        {
-            m_springJoint2D.distance = targetDistance;
-            m_springJoint2D.frequency = targetFrequncy;
-        }
-        if (!launchToPoint)
-        {
-            if (autoConfigureDistance)
-            {
-                m_springJoint2D.autoConfigureDistance = true;
-                m_springJoint2D.frequency = 0;
-            }
 
-            m_springJoint2D.connectedAnchor = grapplePoint;
-            m_springJoint2D.enabled = true;
-        }
-        else
-        {
-            switch (launchType)
-            {
-                case LaunchType.Physics_Launch:
-                    m_springJoint2D.connectedAnchor = grapplePoint;
-
-                    Vector2 distanceVector = firePoint.position - gunHolder.position;
-
-                    m_springJoint2D.distance = distanceVector.magnitude;
-                    m_springJoint2D.frequency = launchSpeed;
-                    m_springJoint2D.enabled = true;
-                    break;
-                case LaunchType.Transform_Launch:
-                    m_rigidbody.gravityScale = 0;
-                    m_rigidbody.velocity = Vector2.zero;
-                    break;
-            }
-        }
+        m_rigidbody.gravityScale = 0;
+        m_rigidbody.velocity = Vector2.zero;
     }
 
     private void OnDrawGizmosSelected()

@@ -141,10 +141,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 516099557, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: ropeProgressionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 516099558, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 1613523419}
+    - target: {fileID: 516099558, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: launchSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4913807351180545803, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -193,7 +221,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (With Grapple)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5903297114291749719, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903297114824010041, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903297114824010041, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
+      propertyPath: m_Distance
+      value: 1.9343355
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5903297114824010041, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c69e446bf032dd64ca921b993944f66f, type: 3}
 --- !u!4 &516099563 stripped
 Transform:
@@ -556,7 +597,7 @@ GameObject:
   - component: {fileID: 1083573427}
   - component: {fileID: 1083573426}
   - component: {fileID: 1083573425}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: movingBox
   m_TagString: pusher
   m_Icon: {fileID: 0}

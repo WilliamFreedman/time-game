@@ -6,34 +6,34 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedSceneGuid-0:
-      value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
+      value: 010606050457590e5e0f5c7b417709494e4f1b7e797e7e652e2f4b37e1b8666a
       flags: 0
     RecentlyUsedSceneGuid-1:
-      value: 5609575606545b035b570e241574094412164f2978297f6329711e62e6e3356b
+      value: 515250075c0c595e5f5a5e71122159444e4e4a2f7a7d7f602f284d66b4b76661
       flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 550203515654595f5e08557b477759474e1640297f717f347b7f1b61e1b5606a
-      flags: 0
-    RecentlyUsedSceneGuid-3:
       value: 51530c045d515c085b5d557514775a4517161e29787f7e337e7d1b31b5b16561
       flags: 0
-    RecentlyUsedSceneGuid-4:
+    RecentlyUsedSceneGuid-3:
       value: 5501560255040c5d5a590a7643770a42174e487c7f7972327b78446bb2e16560
       flags: 0
-    RecentlyUsedSceneGuid-5:
+    RecentlyUsedSceneGuid-4:
       value: 5002520052505e020e0f5a7548770c46474e1e7a2e7124677e7f4d64b6b66c3b
       flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 5053000752030d595c565924407b5d4412154b7f7f2c7061782d486bbae13069
+      flags: 0
     RecentlyUsedSceneGuid-6:
-      value: 5054065e5000580b5d0c0a7011775c12424f4f7e7d2b7f607d2d4c35b6b66d6b
-      flags: 0
-    RecentlyUsedSceneGuid-7:
-      value: 05020c50040d510309570d751477094215161a7b2d2e733279284a67e0b0373d
-      flags: 0
-    RecentlyUsedSceneGuid-8:
       value: 5208565557075908595b5e7448775b464e4f4f72287c23662b2f4a6bb2e6626b
       flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 550203515654595f5e08557b477759474e1640297f717f347b7f1b61e1b5606a
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 5054065e5000580b5d0c0a7011775c12424f4f7e7d2b7f607d2d4c35b6b66d6b
+      flags: 0
     RecentlyUsedSceneGuid-9:
-      value: 0006555101075d5a5d0c547341770f44174f497b78297f627d794f35b2b26168
+      value: 5609575606545b035b570e241574094412164f2978297f6329711e62e6e3356b
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
