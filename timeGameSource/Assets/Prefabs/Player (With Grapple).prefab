@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275263be466e5454daccb82dd1e4c323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  God: {fileID: 0}
   controller: {fileID: 5903297114824010039}
   runSpeed: 40
   decelSpeed: -10
@@ -288,7 +289,7 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 1.9343355
+  m_Distance: 1.8275778
   m_DampingRatio: 1
   m_Frequency: 1
 --- !u!114 &5903297114824010039
@@ -307,7 +308,7 @@ MonoBehaviour:
   m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 1559
   m_GroundCheck: {fileID: 4913807350324784437}
   m_CeilingCheck: {fileID: 4913807349630818913}
   m_CrouchDisableCollider: {fileID: 4913807351180545804}
