@@ -113,10 +113,11 @@ public class GrapplingGun : MonoBehaviour
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 mousePressedOrFrozen = false;
-                grappleRope.enabled = false;
                 m_rigidbody.gravityScale = gravValue;
                 movingPlatform = false;
-                gunHolder.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+                if(grappleRope.isGrappling)
+                    gunHolder.gameObject.GetComponent<Rigidbody2D>().velocity = currentVelocity;
+                grappleRope.enabled = false;
             }
             else
             {
